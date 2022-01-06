@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   end
 
   # Routes will be for creating user account
-  resources :user, only: [:new, :create]
+  resources :users, only: [:new, :create]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
