@@ -19,6 +19,11 @@ Rails.application.routes.draw do
     resources :categories, only: [:index, :new, :create]
   end
 
+  # Routes for showing users a login form, logging them in, and logging them out
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  get '/logout' => 'sessions#destroy'
+
   # Routes will be for creating user account
   resources :users, only: [:new, :create]
 
