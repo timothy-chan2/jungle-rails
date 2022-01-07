@@ -47,6 +47,20 @@
             <%= fa_icon "shopping-cart" %> My Cart (<%= cart.size %>)
           <% end %>
         </li>
+        <li>
+          <% if current_user %>
+            Signed in as <%= current_user.name %>
+          <% else %>
+            <%= link_to 'Login', '/login' %>
+          <% end %>
+        </li>
+        <li>
+          <% if current_user %>
+            <%= link_to "Logout", '/logout' %>
+          <% else %>
+            <%= link_to 'Register', '/users/new' %>
+          <% end %>
+        </li>
       </ul>
     </div>
   </div>
