@@ -1,7 +1,7 @@
 class CartsController < ApplicationController
 
-  # Secure controller by requiring users to sign in
-  before_filter :authorize
+  # Secure controller by requiring users to sign in once it's uncommented
+  # before_filter :authorize
 
   def show
   end
