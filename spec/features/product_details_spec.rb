@@ -17,7 +17,7 @@ RSpec.feature "Visitor navigates from home page to the product detail page", typ
     end
   end
 
-  scenario "They see all products" do
+  scenario "They see product details of a single product" do
     visit root_path
     find('.pull-right', match: :first).click
     expect(page).to have_css 'article.product-detail'
