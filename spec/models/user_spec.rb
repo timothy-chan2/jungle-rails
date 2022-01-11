@@ -59,9 +59,7 @@ RSpec.describe User, type: :model do
       expect(@user.id).not_to be_present
       expect(@user.errors.full_messages).to include('Last name can\'t be blank')
     end
-  end
 
-  describe 'Password Length' do
     it 'should save if password length is 4 characters or longer' do
       @user = User.new(first_name: 'Cassie', last_name: 'Han', email: 'han@email.ca', password: 'oehkfieg34', password_confirmation: 'oehkfieg34')
       @user.save!
@@ -75,6 +73,32 @@ RSpec.describe User, type: :model do
 
       expect(@user.id).not_to be_present
       expect(@user.errors.full_messages).to include('Password is too short (minimum is 4 characters)')
+    end
+  end
+
+  describe '.authenticate_with_credentials' do
+    it 'should return a user if successfully authenticated' do
+      @user1 = User.new(first_name: 'Betty', last_name: 'Foz', email: 'foz@email.ca', password: 'utyldsh47jfrk', password_confirmation: 'utyldsh47jfrk')
+      @user1.save!
+
+      @user2 = User.authenticate_with_credentials('foz@email.ca', 'utyldsh47jfrk')
+      expect(@user2).to be_instance_of(User)
+    end
+
+    it 'should return not a user if user email does not exists' do
+      @user1 = User.new(first_name: 'Betty', last_name: 'Foz', email: 'foz@email.ca', password: 'utyldsh47jfrk', password_confirmation: 'utyldsh47jfrk')
+      @user1.save!
+
+      @user2 = User.authenticate_with_credentials('betty@email.ca', 'utyldsh47jfrk')
+      expect(@user2).to be_nil
+    end
+
+    it 'should return not a user if user enters a wrong password' do
+      @user1 = User.new(first_name: 'Betty', last_name: 'Foz', email: 'foz@email.ca', password: 'utyldsh47jfrk', password_confirmation: 'utyldsh47jfrk')
+      @user1.save!
+
+      @user2 = User.authenticate_with_credentials('foz@email.ca', 'utyldsh47')
+      expect(@user2).to be_nil
     end
   end
 end
