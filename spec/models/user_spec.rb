@@ -100,5 +100,21 @@ RSpec.describe User, type: :model do
       @user2 = User.authenticate_with_credentials('foz@email.ca', 'utyldsh47')
       expect(@user2).to be_nil
     end
+
+    it 'should return a user if the email is valid but contains extra spaces before and after it' do
+      @user1 = User.new(first_name: 'Betty', last_name: 'Foz', email: 'foz@email.ca', password: 'utyldsh47jfrk', password_confirmation: 'utyldsh47jfrk')
+      @user1.save!
+
+      @user2 = User.authenticate_with_credentials('  foz@email.ca  ', 'utyldsh47jfrk')
+      expect(@user2).to be_instance_of(User)
+    end
+
+    it 'should return a user if the email is valid but in the wrong case' do
+      @user1 = User.new(first_name: 'Betty', last_name: 'Foz', email: 'foz@email.ca', password: 'utyldsh47jfrk', password_confirmation: 'utyldsh47jfrk')
+      @user1.save!
+
+      @user2 = User.authenticate_with_credentials('FOZ@EMAIL.ca', 'utyldsh47jfrk')
+      expect(@user2).to be_instance_of(User)
+    end
   end
 end
