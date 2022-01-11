@@ -2,6 +2,13 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   describe 'Validations' do
+    it 'should save if all registration page validations pass' do
+      @user = User.new(first_name: 'Chris', last_name: 'Bates', email: 'bates@email.ca', password: '1234', password_confirmation: '1234')
+      @user.save!
+
+      expect(@user.id).to be_present
+    end
+    
     it 'should not save if password and password confirmation do not match' do
       @user = User.new(first_name: 'Chris', last_name: 'Bates', email: 'bates@email.ca', password: '1234', password_confirmation: '98765')
       @user.save
@@ -51,6 +58,23 @@ RSpec.describe User, type: :model do
 
       expect(@user.id).not_to be_present
       expect(@user.errors.full_messages).to include('Last name can\'t be blank')
+    end
+  end
+
+  describe 'Password Length' do
+    it 'should save if password length is 4 characters or longer' do
+      @user = User.new(first_name: 'Cassie', last_name: 'Han', email: 'han@email.ca', password: 'oehkfieg34', password_confirmation: 'oehkfieg34')
+      @user.save!
+
+      expect(@user.id).to be_present
+    end
+    
+    it 'should not save if password length is less than 4 characters' do
+      @user = User.new(first_name: 'Cassie', last_name: 'Han', email: 'han@email.ca', password: 'oe4', password_confirmation: 'oe4')
+      @user.save
+
+      expect(@user.id).not_to be_present
+      expect(@user.errors.full_messages).to include('Password is too short (minimum is 4 characters)')
     end
   end
 end
