@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       redirect_to '/'
     else
     # If user's login doesn't work, send them back to the login form with error message.
-      redirect_to '/login', alert: 'Email doesn\'t exists or the password entered is incorrect'
+      redirect_to '/login', alert: 'Email or password is incorrect'
     end
   end
 
