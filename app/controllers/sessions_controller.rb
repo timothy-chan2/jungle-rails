@@ -11,8 +11,8 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to '/'
     else
-    # If user's login doesn't work, send them back to the login form.
-      redirect_to '/login'
+    # If user's login doesn't work, send them back to the login form with error message.
+      redirect_to '/login', alert: 'Email doesn\'t exists or the password entered is incorrect'
     end
   end
 

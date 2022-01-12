@@ -8,9 +8,16 @@
     <div class="col-sm-6 col-sm-offset-1">
       <%= form_tag '/login' do %>
 
+        <% # Message for when login fails %>
+        <% flash.each do |type, msg| %>
+          <p class="alert alert-warning">
+            <strong><%= msg %></strong>
+          </p>
+        <% end %>
+
         <div class="form-group">
           <p><strong>Email</strong></p>
-          <%= text_field_tag :email, "", class: 'form-control' %>
+          <%= email_field_tag :email, "", class: 'form-control' %>
         </div>
         <div class="form-group">
           <p><strong>Password</strong></p>
