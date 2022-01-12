@@ -8,6 +8,13 @@
     <div class="col-sm-6 col-sm-offset-1">
       <%= form_for :user, url: '/users' do |f| %>
 
+        <% # Message for when login fails %>
+        <% flash.each do |type, msg| %>
+          <p class="alert alert-warning">
+            <strong><%= msg %></strong>
+          </p>
+        <% end %>
+
         <div class="form-group">
           <p><strong>First name</strong></p>
           <%= f.text_field :first_name, class: 'form-control' %>
@@ -31,6 +38,14 @@
         <%= f.submit "Submit", class: 'btn btn-primary' %>
 
       <% end %>
+      
+      <div class="alert alert-info" style="margin-top: 30px">
+        <p><strong>Requirements</strong></p>
+        <p>1. First name</p>
+        <p>2. Last name</p>
+        <p>3. Email has not been used by other users</p>
+        <p>4. Password is at least 4 characters long</p>
+      </div>
     </div>
   </div>
 

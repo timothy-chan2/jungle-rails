@@ -3,12 +3,19 @@ class UsersController < ApplicationController
   end
 
   def create
+    msg = "
+    
+    
+    
+    4. Password is at least 4 characters long"
     user = User.new(user_params)
     if user.save
       session[:user_id] = user.id
       redirect_to '/'
     else
-      redirect_to '/users/new'
+      redirect_to '/users/new',
+      alert: 'Failed to create account. Please make sure all the requirements below were followed.'
+      
     end
   end
 
