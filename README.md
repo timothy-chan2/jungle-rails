@@ -1,7 +1,5 @@
 # Jungle
 
-200 mins
-
 A mini e-commerce application built with Rails 4.2 for purposes of teaching Rails by example. It simulated the real world where I inherit an existing code base in a language / framework that was new to me.
 
 ## Final Product
@@ -24,17 +22,17 @@ A mini e-commerce application built with Rails 4.2 for purposes of teaching Rail
 
 !["Screenshot of the admin categories page"](https://github.com/timothy-chan2/jungle-rails/blob/master/docs/categories-admin.png?raw=true)
 
-## Bugs / Features
+## Bug Fixes / New Features
 
 I fixed the following bugs:
 
-- **Inconsistent money formatting** (My Cart,& Product details page)
+- **Inconsistent money formatting** (My Cart & Product details page)
   
 - **Page shows the Stripe checkout button even when the cart is empty** (My Cart page)
 
 I added the following new features:
 
-- **Sold out badge on the Home page when quantity of product is 0**
+- **Sold out badge when the quantity of a product is 0** (Home page)
 
 - **Order details page after payment is successfully completed**
 
@@ -44,7 +42,7 @@ I added the following new features:
 
 - **Admin categories page from scratch**
 
-- **Created user authentication pages from scratch** (Login & Register page)
+- **User authentication pages from scratch** (Login & Register page)
 
 ## Getting Started
 
@@ -74,11 +72,12 @@ More information in their docs: <https://stripe.com/docs/testing#cards>
 
 ## Dependencies
 
-* Rails 4.2 [Rails Guide](http://guides.rubyonrails.org/v4.2/)
+* Rails 4.2 ([Rails Guide](http://guides.rubyonrails.org/v4.2/))
 * PostgreSQL 9.x
 * Stripe
-* Font Awesome
-* Bootstrap
+* font-awesome-rails
+* money-rails
+* bootstrap-sass
 * bcrypt
 
 ## Development Testing
