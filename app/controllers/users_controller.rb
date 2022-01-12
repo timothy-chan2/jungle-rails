@@ -3,11 +3,6 @@ class UsersController < ApplicationController
   end
 
   def create
-    msg = "
-    
-    
-    
-    4. Password is at least 4 characters long"
     user = User.new(user_params)
     if user.save
       session[:user_id] = user.id
